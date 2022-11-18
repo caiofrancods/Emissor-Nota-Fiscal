@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Emissor de Nota Fiscal</title>
+  <link href="bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="container">
+    <div id="cima">
+      <div class="botoesright">
+        <a href="principal.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Página
+            Principal</button></a>
+        <a href="config.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do
+            Emissor</button></a>
+      </div>
+      <div class="botoesleft">
+        <a href="minhaconta.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
+        <button class="btn btn-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button>
+      </div>
+    </div>
+    <div id="esquerda">
+      <div class="form-row">
+        <div class="">
+          <label for="opc1">Situação</label>
+          <select class="custom-select" id="opc1" name="opc1">
+            <option selected>Selecione uma opção</option>
+            <option value="1">Pendentes</option>
+            <option value="2">Aprovadas</option>
+            <option value="3">Canceladas</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="jogar()">Filtrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="centro">
+      <table class="table light-dark" id="notas">
+        <thead class="thead-dark">
+          <tr>
+            <th>Número</th>
+            <th>Nome do Cliente</th>
+            <th>Valor</th>
+            <th>Situção</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="direita">
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <a href="incluir.html"><button class="btn btn-primary mt-2 mb-4" type="button" onclick="">Incluir
+                Nota</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="mudarnota">
+        <div class="form-row">
+          <div class="">
+            <div class="form-group">
+              <label for="situacao_mudar">Situação</label>
+              <select class="custom-select" id="situacao_mudar" name="situacao_mudar">
+                <option selected>Selecione uma opção</option>
+                <option value="enviar">Enviar nota para Sefaz</option>
+                <option value="cancelar">Cancelar Nota</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="">
+            <div class="form-group">
+              <label for="numnota">Número da Nota</label>
+              <input type="number" id="numnota" class="form-control" placeholder="Número da Nota" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button class="btn btn-primary mt-2 mb-4" type="button" onclick="mudarsituacao()">Mudar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="principal.js"></script>
+  <script src="main.js"></script> 
+</body>
+
+</html>

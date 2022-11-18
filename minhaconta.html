@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Emissor de Nota Fiscal</title>
+    <link href="bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body onload="veriflog();verdados()">
+    <div id="cimamenu">
+      <div class="botoesright">
+        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
+        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
+      </div>
+      <div class="botoesleft">
+        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
+        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button></a>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-center mt-4">Minha Conta</h3>
+      <form>
+        <div class="form-row">
+          <div class="col-md-4">
+            <label for="nomefantasia_ver">Nome Fantasia</label>
+            <input type="text" class="form-control" id="nomefantasia_ver" name="nomefantasia_ver" value="" readonly>
+          </div>
+          <div class="col-md-4">
+            <label for="cnpjver">CNPJ</label>
+            <input type="number" class="form-control" id="cnpjver" name="cnpjver" value="" readonly>
+          </div>
+          <div class="col-md-4">
+            <label for="email_contato_ver">Email de Contato</label>
+            <input type="email" class="form-control" id="email_contato_ver" name="email_contato_ver" value="" readonly>
+          </div>
+        </div>
+      </form>
+      <div class="form-row">
+          <div class="col-md-12">
+            <div class="form-group">
+               <a href="alterarconta.html"><button class="btn btn-primary mt-2 mb-4" type="button">Alterar dados</button></a>
+            </div>
+          </div>
+        </div>
+    <script src="usuarios.js"></script>
+    <script src="main.js"></script> 
+  </body>
+</html>

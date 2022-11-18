@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Emissor de Nota Fiscal</title>
+    <link href="bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="containeconfig">
+      <div id="cimamenu">
+      <div class="botoesright">
+        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
+        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
+      </div>
+      <div class="botoesleft">
+        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
+        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
+      </div>
+    </div>
+      <div id="corpo">
+        <div id="cimaconfig">
+          <h5 class="mt-4 text-center">Configurações Tributárias</h5>
+          <div class="form-row">
+            <div>
+              <label for="regime">Regime tributário</label>
+              <select class="custom-select" id="regime" name="opc1">
+                <option selected>Selecione uma opção</option>
+                <option value="simplesnacional">Simples Nacional</option>
+                <option value="lucropresumido">Lucro Presumido</option>
+              </select>
+            </div>
+          </div>
+          <a href="javascript: abrirpopup()">Regras</a><br />
+          <div id="popup" class="popup">
+            <h6 class="text-center sublinhar">Regimes Tributários</h6><br>
+            <p>Simples Nacional</p>
+            <p>Alíquota: 6% (Para todos os tipos de operações)</p>
+            <p>Lucro Presumido</p
+            <p>Alíquota: 4% (Para todos os tipos de operações)</p>
+            <p class="text-center">Qualquer dúvida consulte o seu contador</p>
+            <a href="javascript: fecharpopup();">Fechar</a><br />
+          </div>
+          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="salvartrib()">Salvar</button>
+        </div>
+        <div id="baixoconfig">
+          <h5 class="text-center">Cadastrar Produto</h5>
+          <form class="needs-validation" novalidate action="#">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="nomeproduto">Nome do Produto</label>
+                <input type="text" class="form-control" id="nomeproduto" name="nomeproduto" value="" required />
+              </div>
+              <div class="col-md-6">
+                <label for="nome">Código</label>
+                <input type="number" class="form-control" id="nome" name="nome" value="" required />
+              </div>
+              <div class="col-md-6">
+                <label for="nome">Preço</label>
+                <input type="number" class="form-control" id="nome" name="nome" value="" required />
+              </div>
+              <div class="col-md-6">
+                <label for="curso">NCM</label>
+                <select class="custom-select" id="curso" name="curso">
+                  <option selected value="selecione">Selecione o NCM</option>
+                  <option value="Desenvolvimento de Sistemas">rrr</option>
+                  <option value="Edificações">rrr</option>
+                  <option value="Química">rrr</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="armazenar()">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="armazenar()">Ver produtos cadastrados</button>
+          <div>
+            <table class="table light-dark" id="produtos">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Nome do Produto</th>
+                  <th>Código</th>
+                  <th>Preço</th>
+                  <th>NCM</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="produtos.js"></script>
+    <script src="main.js"></script> 
+  </body>
