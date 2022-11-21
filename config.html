@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Emissor de Nota Fiscal</title>
-    <link href="bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
+  <body onload="veriflog();mostrarregime();mostrarprodutos()">
     <div id="containeconfig">
       <div id="cimamenu">
       <div class="botoesright">
@@ -22,9 +22,16 @@
       <div id="corpo">
         <div id="cimaconfig">
           <h5 class="mt-4 text-center">Configurações Tributárias</h5>
+          <h5>Regime tributário</h5>
+          <div class="form-row">
+              <div class="col-md-3">
+                <label for="regtrib">Regime Atual</label>
+                <input type="text" class="form-control" id="regtrib" name="regtrib" value="" readonly/>
+              </div>
+          </div>
           <div class="form-row">
             <div>
-              <label for="regime">Regime tributário</label>
+              <label for="regime">Trocar regime</label>
               <select class="custom-select" id="regime" name="opc1">
                 <option selected>Selecione uma opção</option>
                 <option value="simplesnacional">Simples Nacional</option>
@@ -36,13 +43,13 @@
           <div id="popup" class="popup">
             <h6 class="text-center sublinhar">Regimes Tributários</h6><br>
             <p>Simples Nacional</p>
-            <p>Alíquota: 6% (Para todos os tipos de operações)</p>
+            <p>Alíquota: 6% (Para todos os tipos de operações em cada imposto)</p>
             <p>Lucro Presumido</p
-            <p>Alíquota: 4% (Para todos os tipos de operações)</p>
+            <p>Alíquota: 4% (Para todos os tipos de operações em cada imposto)</p>
             <p class="text-center">Qualquer dúvida consulte o seu contador</p>
             <a href="javascript: fecharpopup();">Fechar</a><br />
           </div>
-          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="salvartrib()">Salvar</button>
+          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="trocartrib()">Trocar</button>
         </div>
         <div id="baixoconfig">
           <h5 class="text-center">Cadastrar Produto</h5>
@@ -53,20 +60,20 @@
                 <input type="text" class="form-control" id="nomeproduto" name="nomeproduto" value="" required />
               </div>
               <div class="col-md-6">
-                <label for="nome">Código</label>
-                <input type="number" class="form-control" id="nome" name="nome" value="" required />
+                <label for="codigo">Código</label>
+                <input type="number" class="form-control" id="codigo" name="codigo" value="" required />
               </div>
               <div class="col-md-6">
-                <label for="nome">Preço</label>
-                <input type="number" class="form-control" id="nome" name="nome" value="" required />
+                <label for="preco">Preço</label>
+                <input type="number" class="form-control" id="preco" name="preco" value="" required />
               </div>
               <div class="col-md-6">
-                <label for="curso">NCM</label>
-                <select class="custom-select" id="curso" name="curso">
+                <label for="ncm">NCM</label>
+                <select class="custom-select" id="ncm" name="ncm">
                   <option selected value="selecione">Selecione o NCM</option>
-                  <option value="Desenvolvimento de Sistemas">rrr</option>
-                  <option value="Edificações">rrr</option>
-                  <option value="Química">rrr</option>
+                  <option value="3305.90.00">3305.90.00</option>
+                  <option value="3004.50.90">3004.50.90</option>
+                  <option value="3003.90.99">3003.90.99</option>
                 </select>
               </div>
             </div>
@@ -74,11 +81,11 @@
           <div class="form-row">
             <div class="col-md-12">
               <div class="form-group">
-                <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="armazenar()">Cadastrar</button>
+                <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="cadastrarproduto()">Cadastrar</button>
               </div>
             </div>
           </div>
-          <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="armazenar()">Ver produtos cadastrados</button>
+          <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="mostrarprodutos()">Ver produtos cadastrados</button>
           <div>
             <table class="table light-dark" id="produtos">
               <thead class="thead-dark">
@@ -97,6 +104,7 @@
         </div>
       </div>
     </div>
-    <script src="produtos.js"></script>
+    <script src="js/produtos.js"></script>
+    <script src="js/usuarios.js"></script>
     <script src="main.js"></script> 
   </body>

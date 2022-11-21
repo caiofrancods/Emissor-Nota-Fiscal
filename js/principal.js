@@ -1,10 +1,5 @@
-
-
 ///////// Página Principal ////////
-function sair() {
-  localStorage.removeItem('userlogado');
-  window.location.href = "index.html";
-}
+
 /*
 function imprimirnota(){
   var tabnotas = document.getElementById("notas");
