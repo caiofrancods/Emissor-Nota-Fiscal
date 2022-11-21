@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Emissor de Nota Fiscal</title>
-    <link href="bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
+  <body onload="veriflog()">
     <div id="cimamenu">
       <div class="botoesright">
         <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
@@ -24,16 +24,16 @@
       <form class="needs-validation" novalidate action="#">
         <div class="form-row mb-4">
           <div class="col-md-4">
-            <label for="matricula">Nome do Cliente</label>
-            <input type="number" class="form-control" id="matricula" name="matricula" value="" required>
+            <label for="nome_cliente">Nome do Cliente</label>
+            <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" value="" required>
           </div>
           <div class="col-md-4">
-            <label for="nome">CPF</label>
-            <input type="number" class="form-control" id="nome" name="nome" value="" required>
+            <label for="cpf_cliente">CPF</label>
+            <input type="number" class="form-control" id="cpf_cliente" name="cpf_cliente" value="" required>
           </div>
           <div class="col-md-4">
-            <label for="nome">Telefone</label>
-            <input type="number" class="form-control" id="nome" name="nome" value="" required>
+            <label for="telefone_cliente">Telefone</label>
+            <input type="number" class="form-control" id="telefone_cliente" name="telefone_cliente" value="" required>
           </div>
         </div>
       </form>
@@ -41,11 +41,11 @@
       <form class="needs-validation" novalidate action="#">
         <div class="form-row mb-4 botaolado">
           <div class="col-md-11 label_botaolado">
-            <label for="matricula">Nome ou Código do Produto</label>
+            <label for="matricula">Código do Produto</label>
             <input type="number" class="form-control" id="matricula" name="matricula" value="" required>
           </div>
           <div class="col-md-0 mt-4 botao_botaolado">
-            <button class="btn btn-primary" type="submit">Procurar e Incluir</button>
+            <button class="btn btn-primary" type="button" id="codigoproduto" onclick="procurarproduto()">Procurar e Incluir</button>
           </div>
         </div>
       </form>
@@ -63,37 +63,32 @@
           </tr>
         </tbody>
       </table>
-      <br><br><br><br>
-      <div class="form-row">
-        <div class="col-md-12">
-          <button class="btn btn-primary mt-2 mb-4" type="submit">Calcular Impostos</button>
-        </div>
-      </div>
-      <div class="form-row">
+      <div class="form-row mt-5">
         <div class="col-md-3">
-          <label for="matricula">ICMS</label>
-          <input type="number" class="form-control" id="matricula" name="matricula" value="" readonly>
+          <label for="icms">ICMS</label>
+          <input type="number" class="form-control" id="icms" name="icms" value="" readonly>
         </div>
         <div class="col-md-3">
-          <label for="nome">IPI</label>
-          <input type="number" class="form-control" id="nome" name="nome" value="" readonly>
+          <label for="ipi">IPI</label>
+          <input type="number" class="form-control" id="ipi" name="ipi" value="" readonly>
         </div>
         <div class="col-md-3">
-          <label for="nome">Pis e Cofins</label>
-          <input type="number" class="form-control" id="nome" name="nome" value="" readonly>
+          <label for="piscofins">Pis e Cofins</label>
+          <input type="number" class="form-control" id="piscofins" name="piscofins" value="" readonly>
         </div>
         <div class="col-md-3">
-          <label for="nome">Total da Nota</label>
-          <input type="number" class="form-control" id="nome" name="nome" value="" readonly>
+          <label for="total_nota">Total da Nota</label>
+          <input type="number" class="form-control" id="total_nota" name="total_nota" value="" readonly>
         </div>
       </div>
       <div class="form-row">
         <div class="col-md-12 mt-3">
-          <button class="btn btn-primary mt-2 mb-4" type="submit">Salvar Nota</button>
+          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="salvarnota">Salvar Nota</button>
         </div>
       </div>
     </div>
-    <script src="produtos.js"></script>
+    <script src="js/produtos.js"></script>
+    <script src="js/notas.js"></script>
     <script src="main.js"></script> 
   </body>
 </html>
