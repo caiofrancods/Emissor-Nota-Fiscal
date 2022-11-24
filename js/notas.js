@@ -1,49 +1,55 @@
-if (!localStorage.notas) {
-  var notas = [];
-  localStorage.setItem('notas', JSON.stringify(notas));
-}
 // Incluir itens na lista de compras da nota
-
-function procurarproduto(){
+function procurarproduto() {
   var produtos = JSON.parse(localStorage.getItem('produtos'));
   const tam = produtos.length;
   var campo_codigoproduto = document.getElementById("codigoproduto");
-  var controle = -1;
+  var controle;
   var codigoproduto = Number(campo_codigoproduto.value);
-  for(var i = 0; i<tam; i++){
-    if(produtos[i].codigo == codigoproduto){
-      controle = i;
+  for (var i = 0; i < tam; i++) {
+    if (produtos[i].codigo == codigoproduto) {
+      controle = i
     }
   }
-  if (controle == -1){
+  if (controle == null) {
     alert("Produto não encontrado");
-  }else{
-    var user =  JSON.parse(localStorage.getItem('user'));
-    var pedido =  JSON.parse(localStorage.getItem('pedido'));
-    var campo_totalnota = document.getElementById("total_nota");
-    var total_parcial_nota = campo_totalnota.value
-    var campo_icms = document.getElementById("icms");
-    var campo_ipi = document.getElementById("ipi");
-    var campo_piscofins = document.getElementById("piscofins");
+    campo_codigoproduto.value = "";
+  } else {
+    var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+    if (userlogado.regtrib == 0) {
+      alert("É necessário configurar o regime tributário");
+      campo_codigoproduto.value = "";
+    } else {
+      calc_impostos(controle)
+      imprimiritem(produtos[controle]);
 
-    var valor_imposto = campo_icms.value;
-    var imposto_antes = valor_imposto;
-    valor_imposto = valor_imposto + (produto[i].preco*user.regtrib);
-
-    campo_icms.value = valor_imposto;
-    campo_ipi.value = valor_imposto;
-    campo_piscofins.value = valor_imposto;
-
-    
-    imprimiritem(produto[i].nome,produto[i].codigo, produto[i].preco, produto[i].ncm);
-    
-    total_parcial_nota = (total_parcial_nota-(imposto_antes*3))+produto[i].preco+valor_imposto;
-    campo_totalnota.value = total_parcial_nota;
-    campo_codigo.value = "";
+    }
   }
 }
+function calc_impostos(control) {
+  var produtos = JSON.parse(localStorage.getItem('produtos'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+  var campo_codigo_produto = document.getElementById("codigoproduto");
+  var campo_totalnota = document.getElementById("total_nota");
+  var campo_icms = document.getElementById("icms");
+  var campo_ipi = document.getElementById("ipi");
+  var campo_piscofins = document.getElementById("piscofins");
+  var valor_produto = Number(produtos[control].preco);
+  var imposto_antes = Number(campo_icms.value);
+  var valor_imposto = imposto_antes + (valor_produto * userlogado.regtrib);
 
-function imprimiritem(nome, codigo, preco, ncm){
+  campo_icms.value = valor_imposto;
+  campo_ipi.value = valor_imposto;
+  campo_piscofins.value = valor_imposto;
+
+  var imposto_agora = imposto_antes + (valor_imposto - imposto_antes)
+  
+  var total_parcial_nota = Number(campo_totalnota.value);
+  var total_parcial = total_parcial_nota + valor_produto + (imposto_agora*3);
+  campo_totalnota.value = total_parcial;
+  campo_codigo_produto.value = "";
+}
+
+function imprimiritem(produto) {
   var tabincluir = document.getElementById("incluirprodutos");
 
   var linha_incluir = tabincluir.insertRow(1);
@@ -53,19 +59,20 @@ function imprimiritem(nome, codigo, preco, ncm){
   var celula3_incluir = linha_incluir.insertCell(2);
   var celula4_incluir = linha_incluir.insertCell(3);
 
-  celula1_incluir.innerText = nome;
-  celula2_incluir.innerText = codigo;
-  celula3_incluir.innerText = preco;
-  celula4_incluir.innerText = ncm;
+  celula1_incluir.innerText = produto.nome_produto;
+  celula2_incluir.innerText = produto.codigo;
+  celula3_incluir.innerText = produto.preco;
+  celula4_incluir.innerText = produto.ncm;
 }
-function salvarnota(){
+function salvarnota() {
   var notas = JSON.parse(localStorage.getItem('notas'));
   var posicao = notas.length;
   var campo_nomecliente = document.getElementById("nome_cliente");
-  
+  var campo_totalnota = document.getElementById("total_nota");
+
   var nf = new Object();
   nf.nomecliente = campo_nomecliente.value;
-  nf.numnota = posicao;
+  nf.numnota = posicao+1;
   nf.valortotal = campo_totalnota.value;
   nf.situacao = "Pendente";
   notas[posicao] = nf;

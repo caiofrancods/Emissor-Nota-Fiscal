@@ -1,7 +1,3 @@
-if (!localStorage.user) {
-  var user = [];
-  localStorage.setItem('user', JSON.stringify(user));
-}
 ///////// Cadastro ////////
 
 function cadastro() {
@@ -12,34 +8,42 @@ function cadastro() {
   var campo_cnpj = document.getElementById("cnpj");
   var campo_email_contato = document.getElementById("emailcontato");
   var campo_senha_cadastro = document.getElementById("senhacadastro");
+  var email = campo_email_contato.value;
+  var cnpj = campo_cnpj.value;
+  var controle = 0;
+  for (var i = 0; i < posicao; i++) {
+    if ((email == user[i].email) || (cnpj == user[i].cnpj)) {
+      controle = 1;
+    }
+  }
+  if (controle == 0) {
+    var usuario = new Object();
+    usuario.nome = campo_nomefantasia.value;
+    usuario.cnpj = Number(campo_cnpj.value);
+    usuario.email = campo_email_contato.value;
+    usuario.senha = campo_senha_cadastro.value;
+    usuario.regtrib = 0;
+    usuario.pos = posicao;
 
-  var usuario = new Object();
-  usuario.nome = campo_nomefantasia.value;
-  usuario.cnpj = Number(campo_cnpj.value);
-  usuario.email = campo_email_contato.value;
-  usuario.senha = campo_senha_cadastro.value;
-  usuario.regtrib = 0;
-  usuario.pos = posicao;
+    user[posicao] = usuario;
 
-  user[posicao] = usuario;
+    localStorage.setItem('user', JSON.stringify(user));
 
-  localStorage.setItem('user', JSON.stringify(user));
-
-  alert("Cadastro Realizado com Sucesso");
-  campo_nomefantasia.value = "";
-  campo_cnpj.value = "";
-  campo_email_contato.value = "";
-  campo_senha_cadastro.value = "";
-  window.location.href = "index.html";
+    alert("Cadastro Realizado com Sucesso");
+    window.location.href = "index.html";
+  } else {
+    alert("Este email ou CNPJ já está cadastrado!")
+    campo_nomefantasia.value = "";
+    campo_cnpj.value = "";
+    campo_email_contato.value = "";
+    campo_senha_cadastro.value = "";
+  }
 }
 
 ///////// Login ////////
 
 function login() {
-  if (!localStorage.userlogado) {
-    var userlogado = "";
-    localStorage.setItem('userlogado', JSON.stringify(userlogado));
-  }
+
   var user = JSON.parse(localStorage.getItem('user'));
   var userlog = JSON.parse(localStorage.getItem('userlogado'));
 
@@ -57,7 +61,7 @@ function login() {
       localStorage.setItem('userlogado', JSON.stringify(userlog));
     }
   }
-    campo_email.value = "";
+  campo_email.value = "";
 
   if (verif == 0) {
     alert("Usuário Não Encontrado");
@@ -77,20 +81,7 @@ function verdados() {
   campo_email_contato_ver.value = userlogado.email;
 }
 
-function posicaousuario(ind){
-  var user = JSON.parse(localStorage.getItem('user'));
-  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
-  var posicao = user.length;
-  var ind = 0;
-  for (var i =0; i<posicao;i++){
-   if(user[i].email == userlogado.email){
-     ind = i;
-   }
-  }
-  return ind
-}
-
-function mostrardados(){
+function mostrardados() {
   var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var campo_nomefantasia_alterar = document.getElementById("nomefantasia_alterar");
   var campo_cnpj_alterar = document.getElementById("cnpj_alterar");
@@ -100,10 +91,10 @@ function mostrardados(){
   campo_email_contato_alterar.value = userlogado.email;
 }
 
-function alterardados(){
+function alterardados() {
   var user = JSON.parse(localStorage.getItem('user'));
   var userlogado = JSON.parse(localStorage.getItem('userlogado'));
-  
+
   var campo_nomefantasia_alterar = document.getElementById("nomefantasia_alterar");
   var campo_cnpj_alterar = document.getElementById("cnpj_alterar");
   var campo_email_contato_alterar = document.getElementById("email_contato_alterar");
@@ -116,29 +107,35 @@ function alterardados(){
   usuario.senha = userlogado.senha;
   usuario.pos = userlogado.pos;
   usuario.regtrib = userlogado.regtrib;
-  
+
   user[userlogado.pos] = usuario;
 
+  userlogado.nome = campo_nomefantasia_alterar.value;
+  userlogado.cnpj = Number(campo_cnpj_alterar.value);
+  userlogado.email = campo_email_contato_alterar.value;
+  
   localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('userlogado', JSON.stringify(userlogado));
 
   alert("Alterações Realizadas com Sucesso");
-  window.location.href = "minhaconta.html";  
+  window.location.href = "minhaconta.html";
 }
 
-function mostrarregime(){
+function mostrarregime() {
+
   var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var campo_regimetributario = document.getElementById("regtrib");
-  if (userlogado.regtrib == 0){
+  if (userlogado.regtrib == 0) {
     campo_regimetributario.value = "Não configurado";
-  }else{
-    if(userlogado.regtrib == 0.06){
+  } else {
+    if (userlogado.regtrib == 0.06) {
       campo_regimetributario.value = "Simples Nacional";
-    }else{
-      if(userlogado.regtrib == 0.04){
+    } else {
+      if (userlogado.regtrib == 0.04) {
         campo_regimetributario.value = "Lucro Presumido";
       }
     }
-  }  
+  }
 }
 //Popup
 function abrirpopup() {
@@ -149,24 +146,29 @@ function fecharpopup() {
   document.getElementById('popup').style.display = 'none';
   document.getElementById('baixoconfig').style.display = 'block';
 }
-function trocartrib(){
+function trocartrib() {
+
   var user = JSON.parse(localStorage.getItem('user'));
   var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var campo_regime = document.getElementById("regime");
   var campo_regimetributario = document.getElementById("regtrib");
+
   var regime = campo_regime.value;
-  if (regime == "simplesnacional"){
+
+  if (regime == "simplesnacional") {
+    user[userlogado.pos].regtrib = 0.06;
     userlogado.regtrib = 0.06;
     campo_regimetributario.value = "Simples Nacional";
-    localStorage.setItem('user', JSON.stringify(userlogado));
+    localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('userlogado', JSON.stringify(userlogado));
     window.location.href = "config.html";
-  }else{
-    if (regime == "lucropresumido"){
+  } else {
+    if (regime == "lucropresumido") {
+      user[userlogado.pos].regtrib = 0.04;
       userlogado.regtrib = 0.04;
       campo_regimetributario.value = "Lucro Presumido";
-      localStorage.setItem('user', JSON.stringify(userlogado));
-     localStorage.setItem('userlogado', JSON.stringify(userlogado));
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('userlogado', JSON.stringify(userlogado));
       window.location.href = "config.html";
     }
   }
