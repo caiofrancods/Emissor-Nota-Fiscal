@@ -9,7 +9,7 @@
   <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body onload="veriflog()">
+<body onload="veriflog(); mostrarnotas()">
   <div id="container">
     <div id="cima">
       <div class="botoesright">
@@ -25,26 +25,26 @@
     </div>
     <div id="esquerda">
       <div class="form-row">
-        <div class="">
-          <label for="opc1">Situação</label>
-          <select class="custom-select" id="opc1" name="opc1">
-            <option selected>Selecione uma opção</option>
-            <option value="1">Pendentes</option>
-            <option value="2">Aprovadas</option>
-            <option value="3">Canceladas</option>
+        <div class="col-md-12">
+          <label for="filtro">Filtrar por Situação</label>
+          <select class="custom-select" id="filtro" name="filtro">
+            <option value="tudo">Selecione uma opção</option>
+            <option value="Pendentes">Pendentes</option>
+            <option value="Enviadas">Enviadas</option>
+            <option value="Canceladas">Canceladas</option>
           </select>
         </div>
       </div>
       <div class="form-row">
         <div class="col-md-6">
           <div class="form-group">
-            <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="jogar()">Filtrar</button>
+            <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="filtrar_notas()">Filtrar</button>
           </div>
         </div>
       </div>
     </div>
     <div id="centro">
-      <table class="table light-dark" id="notas">
+      <table class="table light-dark azul" id="notas">
         <thead class="thead-dark">
           <tr>
             <th>Número</th>
@@ -70,9 +70,9 @@
       </div>
       <div class="mudarnota">
         <div class="form-row">
-          <div class="">
+          <div class="col-md-12">
             <div class="form-group">
-              <label for="situacao_mudar">Situação</label>
+              <label for="situacao_mudar">Mudar Situação</label>
               <select class="custom-select" id="situacao_mudar" name="situacao_mudar">
                 <option selected>Selecione uma opção</option>
                 <option value="enviar">Enviar nota para Sefaz</option>
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="numnota">Número da Nota</label>
               <input type="number" id="numnota" class="form-control" placeholder="Número da Nota" required>
@@ -101,6 +101,7 @@
   </div>
   </div>
   <script src="js/principal.js"></script>
+  <script src="js/notas.js"></script>
   <script src="main.js"></script> 
 </body>
 

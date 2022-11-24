@@ -98,3 +98,6 @@ body{
   display: flex;
   justify-content: flex-end;
 }
+.azul{
+  background-color: #4cbfd3;
+}
