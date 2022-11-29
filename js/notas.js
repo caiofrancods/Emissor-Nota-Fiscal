@@ -1,12 +1,18 @@
+$(document).ready(function() {
+  $('#cpf_cliente').mask('000.000.000-00');
+  $('#telefone_cliente').mask('(00) 00000-0000');
+});
+
 // Incluir itens na lista de compras da nota
 function procurarproduto() {
   var produtos = JSON.parse(localStorage.getItem('produtos'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   const tam = produtos.length;
   var campo_codigoproduto = document.getElementById("codigoproduto");
   var controle;
   var codigoproduto = Number(campo_codigoproduto.value);
   for (var i = 0; i < tam; i++) {
-    if (produtos[i].codigo == codigoproduto) {
+    if (produtos[i].codigo == codigoproduto && produtos[i].pos == userlogado.pos) {
       controle = i
     }
   }
@@ -14,7 +20,6 @@ function procurarproduto() {
     alert("Produto não encontrado");
     campo_codigoproduto.value = "";
   } else {
-    var userlogado = JSON.parse(localStorage.getItem('userlogado'));
     if (userlogado.regtrib == 0) {
       alert("É necessário configurar o regime tributário");
       campo_codigoproduto.value = "";
@@ -25,6 +30,7 @@ function procurarproduto() {
     }
   }
 }
+
 function calc_impostos(control) {
   var produtos = JSON.parse(localStorage.getItem('produtos'));
   var userlogado = JSON.parse(localStorage.getItem('userlogado'));
@@ -42,9 +48,9 @@ function calc_impostos(control) {
   campo_piscofins.value = valor_imposto;
 
   var imposto_agora = imposto_antes + (valor_imposto - imposto_antes)
-  
+
   var total_parcial_nota = Number(campo_totalnota.value);
-  var total_parcial = total_parcial_nota + valor_produto + (imposto_agora*3);
+  var total_parcial = total_parcial_nota + valor_produto + (imposto_agora * 3);
   campo_totalnota.value = total_parcial;
   campo_codigo_produto.value = "";
 }
@@ -66,18 +72,61 @@ function imprimiritem(produto) {
 }
 function salvarnota() {
   var notas = JSON.parse(localStorage.getItem('notas'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var posicao = notas.length;
   var campo_nomecliente = document.getElementById("nome_cliente");
   var campo_totalnota = document.getElementById("total_nota");
-
+  var notasaux = [];
+  var k = 0;
+  for (var i = 0; i<posicao; i++){
+    if (notas[i].pos == userlogado.pos){
+      notasaux[k] = notas[i]
+      k = k+1
+    }
+  }
+  var tam = notasaux.length;
   var nf = new Object();
   nf.nomecliente = campo_nomecliente.value;
-  nf.numnota = posicao+1;
+  nf.numnota = tam+1;
   nf.valortotal = campo_totalnota.value;
   nf.situacao = "Pendente";
+  nf.pos = userlogado.pos;
   notas[posicao] = nf;
 
   localStorage.setItem('notas', JSON.stringify(notas));
   alert("Nota cadastrada com sucesso");
   window.location.href = "principal.html";
 }
+
+$('#formularioIncluir').validate(
+  {
+    rules: {
+      nome_cliente: {
+        required: true
+      },
+      cpf_cliente: {
+        required: true
+      },
+      telefone_cliente: {
+        required: true
+      },
+      codigoproduto: {
+        required: true
+      }
+    },
+    messages: {
+      nome_cliente: {
+        required: "Campo obrigatório",
+      },
+      cpf_cliente: {
+        required: "Campo obrigatório"
+      },
+      telefone_cliente: {
+        required: "Campo obrigatório"
+      },
+      codigoproduto: {
+        required: "Campo obrigatório"
+      }
+    }
+  }
+);

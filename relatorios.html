@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Emissor de Nota Fiscal</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body onload="veriflog();mostrarrelatorios()">
+    <div id="containeconfig">
+      <div id="cimamenu">
+      <div class="botoesright">
+        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
+        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
+        <a href="relatorios.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
+      </div>
+      <div class="botoesleft">
+        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
+        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
+      </div>
+    </div>
+      <div>
+        <div>
+          <h4 class="text-center mt-4">Relatórios</h4>
+          <form class="needs-validation" novalidate action="#">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="quant_vendas">Quantidade de Vendas</label>
+                <input type="text" class="form-control" id="quant_vendas" name="quant_vendas" value="" readonly />
+              </div>
+              <div class="col-md-4">
+                <label for="total_vendido">Total Vendido</label>
+                <input type="number" class="form-control" id="total_vendido" name="total_vendido" value="" readonly />
+              </div>
+              <div class="col-md-4">
+                <label for="imposto_total">Imposto Pago</label>
+                <input type="number" class="form-control" id="imposto_total" name="imposto_total" value="" readonly />
+              </div>
+              <div class="col-md-4 mt-2">
+                <label for="maior_compra">Maior Compra da Loja</label>
+                <input type="number" class="form-control" id="maior_compra" name="maior_compra" value="" readonly />
+              </div>
+              <div class="col-md-4 mt-2">
+                <label for="menorcompra">Menor Compra da Loja</label>
+                <input type="number" class="form-control" id="menorcompra" name="menorcompra" value="" readonly />
+              </div>
+              <div class="col-md-4 mt-2">
+                <label for="ticket_medio">Ticket Médio</label>
+                <input type="number" class="form-control" id="ticket_medio" name="ticket_medio" value="" readonly />
+              </div>
+            </div>
+            <h5 class="mt-4">Cliente com mais compras</h5>
+            <div class="form-row">
+              <div class="col-md-6 mt-2">
+                <label for="nome_cliente">Nome</label>
+                <input type="number" class="form-control" id="nome_cliente" name="nome_cliente" value="" readonly />
+              </div>
+              <div class="col-md-6 mt-2">
+                <label for="vendas">Quantidade de Compras</label>
+                <input type="number" class="form-control" id="vendas" name="vendas" value="" readonly />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/relatorios.js"></script>
+    <script src="main.js"></script> 
+  </body>

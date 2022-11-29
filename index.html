@@ -11,16 +11,19 @@
 </head>
 
 <body onload="iniciar()">
-  <form class="form-signin">
+  <form class="form-signin" id="formularioLogin">
       <h3 class="text-center mb-4">Emissor de Nota Fiscal</h3>
       <h5 class="h3 mb-3 font-weight-normal text-center">Faça login</h5>
-      <label for="inputEmail" class="sr-only">Endereço de email</label>
-      <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Seu email" required autofocus>
-      <label for="inputPassword" class="sr-only">Senha</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+      <label for="email" class="sr-only">Endereço de email</label>
+      <input type="email" id="email" name="email" class="form-control mb-3" placeholder="Seu email" required autofocus>
+      <label for="senha" class="sr-only">Senha</label>
+      <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
       <button class="btn btn-lg btn-primary btn-block" type="button" onclick="login()">Login</button>
       <a class="mt-1" href="cadastro.html">Não tem conta? Cadastre uma aqui</a>
     </form>
+  <script src="js/jquery/jquery.js"></script>
+  <script src="js/jquery/jquery.validate.js"></script>
+  <script src="js/jquery/jquery.mask.js"></script>
   <script src="js/usuarios.js"></script> 
   <script src="main.js"></script> 
   

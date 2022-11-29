@@ -2,27 +2,28 @@
 
 function filtrar_notas() {
   var notas = JSON.parse(localStorage.getItem('notas'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var campo_filtro = document.getElementById('filtro');
   var posicao = notas.length;
   filtro = campo_filtro.value;
   apagarLinhas();
   if (filtro == "Pendentes") {
     for (var i = 0; i < posicao; i++) {
-      if (notas[i].situacao == "Pendente") {
+      if (notas[i].situacao == "Pendente" && userlogado.pos == notas[i].pos) {
         imprimirnota(notas[i]);
       }
     }
   }
   if (filtro == "Enviadas") {
     for (var i = 0; i < posicao; i++) {
-      if (notas[i].situacao == "Enviada") {
+      if (notas[i].situacao == "Enviada" && userlogado.pos == notas[i].pos) {
         imprimirnota(notas[i]);
       }
     }
   }
   if (filtro == "Canceladas") {
     for (var i = 0; i < posicao; i++) {
-      if (notas[i].situacao == "Cancelada") {
+      if (notas[i].situacao == "Cancelada" && userlogado.pos == notas[i].pos) {
         imprimirnota(notas[i]);
       }
     }
@@ -35,9 +36,12 @@ function filtrar_notas() {
 }
 function mostrarnotas() {
   var notas = JSON.parse(localStorage.getItem('notas'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var posicao = notas.length;
   for (var i = 0; i < posicao; i++) {
-    imprimirnota(notas[i])
+    if (notas[i].pos == userlogado.pos){
+      imprimirnota(notas[i]);
+    }
   }
 
 }
@@ -62,15 +66,17 @@ function imprimirnota(notas) {
   var celula2_notas = linha_notas.insertCell(1);
   var celula3_notas = linha_notas.insertCell(2);
   var celula4_notas = linha_notas.insertCell(3);
-
+  var total = Number(notas.valortotal);
+  
   celula1_notas.innerText = notas.numnota;
   celula2_notas.innerText = notas.nomecliente;
-  celula3_notas.innerText = notas.valortotal;
+  celula3_notas.innerText = total.toFixed(2);
   celula4_notas.innerText = notas.situacao;
 }
 
 function mudarsituacao() {
   var notas = JSON.parse(localStorage.getItem("notas"));
+  var userlogado = JSON.parse(localStorage.getItem("userlogado"));
   var campo_situacao = document.getElementById("situacao_mudar");
   var campo_numero = document.getElementById("numnota");
   var situacao_escolhida = campo_situacao.value;
@@ -78,34 +84,37 @@ function mudarsituacao() {
   var tam_notas = notas.length;
   var controle = 0;
   for (var i = 0; i < tam_notas; i++) {
-    if (numero_nota == notas[i].numnota) {
+    if (numero_nota == notas[i].numnota && notas[i].pos == userlogado.pos) {
       controle = 1;
-      if (situacao_escolhida != notas[i].situacao) {
-        if (situacao_escolhida == "enviar") {
-          if (notas[i].situacao == "Cancelada") {
-            alert("Notas canceladas não podem ser alteradas")
-          } else {
+      if (situacao_escolhida == "enviar") {
+        if (notas[i].situacao == "Cancelada") {
+          alert("Notas canceladas não podem ser alteradas")
+        } else {
+          if (notas[i].situacao != "Enviada") {
             notas[i].situacao = "Enviada";
             alert("Nota enviada com sucesso!");
             window.location.href = "principal.html";
+          } else {
+            alert("A nota já foi enviada anteriormente");
           }
-        } else {
-          if (situacao_escolhida == "cancelar") {
+
+        }
+      } else {
+        if (situacao_escolhida == "cancelar") {
+          if (notas[i].situacao != "Cancelada") {
             notas[i].situacao = "Cancelada";
             alert("Nota cancelada com sucesso");
             window.location.href = "principal.html";
+          } else {
+            alert("A nota já foi cancelada anteriormente");
           }
         }
-      } else {
-        alert("A situação escolhida já é a situação atual da nota");
       }
     }
   }
   if (controle == 0) {
-    alert("Nota não encontrada");
+  alert("Nota não encontrada");
   }
   campo_numero.value = "";
   localStorage.setItem('notas', JSON.stringify(notas));
 }
-
-

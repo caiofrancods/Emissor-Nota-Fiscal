@@ -1,109 +1,117 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Emissor de Nota Fiscal</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body onload="veriflog();mostrarregime();mostrarprodutos()">
-    <div id="containeconfig">
-      <div id="cimamenu">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Emissor de Nota Fiscal</title>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="veriflog();mostrarregime();mostrarprodutos()">
+  <div id="containeconfig">
+    <div id="cimamenu">
       <div class="botoesright">
-        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
-        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
+        <a href="principal.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Página
+            Principal</button></a>
+        <a href="config.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do
+            Emissor</button></a>
+        <a href="relatorios.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
       </div>
       <div class="botoesleft">
-        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
-        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
+        <a href="minhaconta.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
+        <a href="index.html"><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
       </div>
     </div>
-      <div id="corpo">
-        <div id="cimaconfig">
-          <h5 class="mt-4 text-center">Configurações Tributárias</h5>
-          <h5>Regime tributário</h5>
-          <div class="form-row">
-              <div class="col-md-3">
-                <label for="regtrib">Regime Atual</label>
-                <input type="text" class="form-control" id="regtrib" name="regtrib" value="" readonly/>
-              </div>
+    <div id="corpo">
+      <div id="cimaconfig">
+        <h5 class="mt-4 text-center">Configurações Tributárias</h5>
+        <h5>Regime tributário</h5>
+        <div class="form-row">
+          <div class="col-md-3">
+            <label for="regtrib">Regime Atual</label>
+            <input type="text" class="form-control" id="regtrib" name="regtrib" value="" readonly />
           </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="regime">Trocar regime</label>
+            <select class="custom-select" id="regime" name="opc1">
+              <option selected>Selecione uma opção</option>
+              <option value="simplesnacional">Simples Nacional</option>
+              <option value="lucropresumido">Lucro Presumido</option>
+            </select>
+          </div>
+        </div>
+        <a href="javascript: abrirpopup()">Regras</a><br />
+        <div id="popup" class="popup">
+          <h6 class="text-center sublinhar">Regimes Tributários</h6><br>
+          <p>Simples Nacional</p>
+          <p>Alíquota: 6% (Para todos os tipos de operações em cada imposto)</p>
+          <p>Lucro Presumido</p <p>Alíquota: 4% (Para todos os tipos de operações em cada imposto)</p>
+          <p class="text-center">Qualquer dúvida consulte o seu contador</p>
+          <a href="javascript: fecharpopup();">Fechar</a><br />
+        </div>
+        <button class="btn btn-primary mt-2 mb-4" type="button" onclick="trocartrib()">Trocar</button>
+      </div>
+      <div id="baixoconfig">
+        <h5 class="text-center">Cadastrar Produto</h5>
+        <form class="needs-validation" novalidate action="#" id="formularioProduto">
           <div class="form-row">
-            <div>
-              <label for="regime">Trocar regime</label>
-              <select class="custom-select" id="regime" name="opc1">
-                <option selected>Selecione uma opção</option>
-                <option value="simplesnacional">Simples Nacional</option>
-                <option value="lucropresumido">Lucro Presumido</option>
+            <div class="col-md-6">
+              <label for="nomeproduto">Nome do Produto</label>
+              <input type="text" class="form-control" id="nomeproduto" name="nomeproduto" value="" required />
+            </div>
+            <div class="col-md-6">
+              <label for="codigo">Código</label>
+              <input type="number" class="form-control" id="codigo" name="codigo" value="" required />
+            </div>
+            <div class="col-md-6">
+              <label for="preco">Preço</label>
+              <input type="number" class="form-control" id="preco" name="preco" value="" required />
+            </div>
+            <div class="col-md-6">
+              <label for="ncm">NCM</label>
+              <select class="custom-select" id="ncm" name="ncm">
+                <option selected value="selecione">Selecione o NCM</option>
+                <option value="3305.90.00">3305.90.00</option>
+                <option value="3004.50.90">3004.50.90</option>
+                <option value="3003.90.99">3003.90.99</option>
               </select>
             </div>
           </div>
-          <a href="javascript: abrirpopup()">Regras</a><br />
-          <div id="popup" class="popup">
-            <h6 class="text-center sublinhar">Regimes Tributários</h6><br>
-            <p>Simples Nacional</p>
-            <p>Alíquota: 6% (Para todos os tipos de operações em cada imposto)</p>
-            <p>Lucro Presumido</p
-            <p>Alíquota: 4% (Para todos os tipos de operações em cada imposto)</p>
-            <p class="text-center">Qualquer dúvida consulte o seu contador</p>
-            <a href="javascript: fecharpopup();">Fechar</a><br />
+        </form>
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button class="btn btn-primary mt-2 mb-4 float-right" type="button"
+                onclick="cadastrarproduto()">Cadastrar</button>
+            </div>
           </div>
-          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="trocartrib()">Trocar</button>
         </div>
-        <div id="baixoconfig">
-          <h5 class="text-center">Cadastrar Produto</h5>
-          <form class="needs-validation" novalidate action="#">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="nomeproduto">Nome do Produto</label>
-                <input type="text" class="form-control" id="nomeproduto" name="nomeproduto" value="" required />
-              </div>
-              <div class="col-md-6">
-                <label for="codigo">Código</label>
-                <input type="number" class="form-control" id="codigo" name="codigo" value="" required />
-              </div>
-              <div class="col-md-6">
-                <label for="preco">Preço</label>
-                <input type="number" class="form-control" id="preco" name="preco" value="" required />
-              </div>
-              <div class="col-md-6">
-                <label for="ncm">NCM</label>
-                <select class="custom-select" id="ncm" name="ncm">
-                  <option selected value="selecione">Selecione o NCM</option>
-                  <option value="3305.90.00">3305.90.00</option>
-                  <option value="3004.50.90">3004.50.90</option>
-                  <option value="3003.90.99">3003.90.99</option>
-                </select>
-              </div>
-            </div>
-          </form>
-          <div class="form-row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <button class="btn btn-primary mt-2 mb-4 float-right" type="button" onclick="cadastrarproduto()">Cadastrar</button>
-              </div>
-            </div>
-          </div>
-          <div>
-            <table class="table light-dark" id="produtos">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Nome do Produto</th>
-                  <th>Código</th>
-                  <th>Preço</th>
-                  <th>NCM</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr></tr>
-              </tbody>
-            </table>
-          </div>
+        <div>
+          <table class="table light-dark" id="produtos">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nome do Produto</th>
+                <th>Código</th>
+                <th>Preço</th>
+                <th>NCM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <script src="js/produtos.js"></script>
-    <script src="js/usuarios.js"></script>
-    <script src="main.js"></script> 
-  </body>
+  </div>
+  <script src="js/jquery/jquery.js"></script>
+  <script src="js/jquery/jquery.validate.js"></script>
+  <script src="js/jquery/jquery.mask.js"></script>
+  <script src="js/produtos.js"></script>
+  <script src="js/usuarios.js"></script>
+  <script src="main.js"></script>
+</body>
