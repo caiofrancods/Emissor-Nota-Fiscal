@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Emissor de Nota Fiscal</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body onload="veriflog();mostrardados()">
-    <div id="cimamenu">
-      <div class="botoesright">
-        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
-        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Emissor de Nota Fiscal</title>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="veriflog();mostrardados()">
+  <div id="cimamenu">
+    <div class="botoesright">
+      <a href="principal.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Página Principal</button></a>
+      <a href="config.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do
+          Emissor</button></a>
+      <a href="relatorios.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
+    </div>
+    <div class="botoesleft">
+      <a href="minhaconta.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
+      <a href="index.html"><button class="btn btn-danger btn-sm mx-1 my-1" type="button"
+          onclick="sair()">Sair</button></a>
+    </div>
+  </div>
+  <div>
+    <h3 class="text-center mt-4">Minha Conta</h3>
+    <form id="formularioAlterar">
+      <div class="form-row">
+        <div class="col-md-4">
+          <label for="nomefantasia_alterar">Nome Fantasia</label>
+          <input type="text" class="form-control" id="nomefantasia_alterar" name="nomefantasia_alterar" value=""
+            required>
+        </div>
+        <div class="col-md-4">
+          <label for="cnpj_alterar">CNPJ</label>
+          <input type="number" class="form-control" id="cnpj_alterar" name="cnpj_alterar" value="" required>
+        </div>
+        <div class="col-md-4">
+          <label for="email_contato_alterar">Email de Contato</label>
+          <input type="email" class="form-control" id="email_contato_alterar" name="email_contato_alterar" value=""
+            required>
+        </div>
       </div>
-      <div class="botoesleft">
-        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
-        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button></a>
+    </form>
+    <div class="form-row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="alterardados()">Salvar</button>
+        </div>
       </div>
     </div>
-    <div>
-      <h3 class="text-center mt-4">Minha Conta</h3>
-      <form>
-        <div class="form-row">
-          <div class="col-md-4">
-            <label for="nomefantasia_alterar">Nome Fantasia</label>
-            <input type="text" class="form-control" id="nomefantasia_alterar" name="nomefantasia_alterar" value="" required>
-          </div>
-          <div class="col-md-4">
-            <label for="cnpj_alterar">CNPJ</label>
-            <input type="number" class="form-control" id="cnpj_alterar" name="cnpj_alterar" value="" required>
-          </div>
-          <div class="col-md-4">
-            <label for="email_contato_alterar">Email de Contato</label>
-            <input type="email" class="form-control" id="email_contato_alterar" name="email_contato_alterar" value="" required>
-          </div>
-        </div>
-      </form>
-      <div class="form-row">
-          <div class="col-md-12">
-            <div class="form-group">
-             <button class="btn btn-primary mt-2 mb-4" type="button" onclick="alterardados()">Salvar</button>
-            </div>
-          </div>
-        </div>
+    <script src="js/jquery/jquery.js"></script>
+    <script src="js/jquery/jquery.validate.js"></script>
+    <script src="js/jquery/jquery.mask.js"></script>
     <script src="js/usuarios.js"></script>
-    <script src="main.js"></script> 
-  </body>
+    <script src="main.js"></script>
+</body>
+
 </html>

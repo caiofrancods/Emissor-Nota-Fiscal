@@ -2,10 +2,17 @@ function sair() {
   localStorage.removeItem('userlogado');
   window.location.href = "index.html";
 }
+
 function veriflog() {
   if (!localStorage.userlogado) {
     alert("Faça login primeiro");
     window.location.href = "index.html";
+  }else{
+    var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+    if (userlogado == "Deslogado"){
+      alert("Faça login primeiro");
+      window.location.href = "index.html";
+    }
   }
 }
 function iniciar() {
@@ -14,7 +21,7 @@ function iniciar() {
     localStorage.setItem('user', JSON.stringify(user));
   }
   if (!localStorage.userlogado) {
-    var userlogado = "";
+    var userlogado = "Deslogado";
     localStorage.setItem('userlogado', JSON.stringify(userlogado));
   }
   if (!localStorage.notas) {

@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Emissor de Nota Fiscal</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body onload="iniciar()">
-    <div>
-      <h3 class="text-center">Cadastro</h3>
-      <form>
-        <div class="form-row">
-          <div class="col-md-3">
-            <label for="nomefantasia">Nome Fantasia</label>
-            <input type="text" class="form-control" id="nomefantasia" name="nomefantasia" value="" required>
-          </div>
-          <div class="col-md-3">
-            <label for="cnpj">CNPJ</label>
-            <input type="number" class="form-control" id="cnpj" name="cnpj" value="" required>
-          </div>
-          <div class="col-md-3">
-            <label for="emailcontato">Email de Contato</label>
-            <input type="email" class="form-control" id="emailcontato" name="emailcontato" value="" required>
-          </div>
-          <div class="col-md-3">
-            <label for="senhacadastro">Senha</label>
-            <input type="password" class="form-control" id="senhacadastro" name="senhacadastro" value="" required>
-          </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Emissor de Nota Fiscal</title>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="iniciar()">
+  <div>
+    <h3 class="text-center">Cadastro</h3>
+    <form id="formularioCadastro">
+      <div class="form-row">
+        <div class="col-md-3">
+          <label for="nomefantasia">Nome Fantasia</label>
+          <input type="text" class="form-control" id="nomefantasia" name="nomefantasia" value="" required>
         </div>
-        <div>
-          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="cadastro()">Cadastrar</button>
+        <div class="col-md-3">
+          <label for="cnpj">CNPJ</label>
+          <input type="text" class="form-control" id="cnpj" name="cnpj" value="" required>
         </div>
-      </form>
+        <div class="col-md-3">
+          <label for="emailcontato">Email de Contato</label>
+          <input type="email" class="form-control" id="emailcontato" name="emailcontato" value="" required>
+        </div>
+        <div class="col-md-3">
+          <label for="senhacadastro">Senha</label>
+          <input type="password" class="form-control" id="senhacadastro" name="senhacadastro" value="" required>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary mt-2 mb-4" type="button" onclick="cadastro()">Cadastrar</button>
+      </div>
+    </form>
+
+    <script src="js/jquery/jquery.js"></script>
+    <script src="js/jquery/jquery.validate.js"></script>
+    <script src="js/jquery/jquery.mask.js"></script>
     <script src="js/usuarios.js"></script>
-    <script src="main.js"></script> 
-  </body>
+    <script src="main.js"></script>
+
+</body>
+
 </html>

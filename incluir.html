@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Emissor de Nota Fiscal</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body onload="veriflog()">
-    <div id="cimamenu">
-      <div class="botoesright">
-        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
-        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
-      </div>
-      <div class="botoesleft">
-        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
-        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
-      </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Emissor de Nota Fiscal</title>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="veriflog()">
+  <div id="cimamenu">
+    <div class="botoesright">
+      <a href="principal.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Página Principal</button></a>
+      <a href="config.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do
+          Emissor</button></a>
+      <a href="relatorios.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
     </div>
-    <div>
-      <h3 class="text-center mt-4">Incluir Nota</h3>
-      <h5>Dados do Cliente</h5>
-      <form class="needs-validation" novalidate action="#">
-        <div class="form-row mb-4">
-          <div class="col-md-4">
-            <label for="nome_cliente">Nome do Cliente</label>
-            <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" value="" required>
-          </div>
-          <div class="col-md-4">
-            <label for="cpf_cliente">CPF</label>
-            <input type="number" class="form-control" id="cpf_cliente" name="cpf_cliente" value="" required>
-          </div>
-          <div class="col-md-4">
-            <label for="telefone_cliente">Telefone</label>
-            <input type="number" class="form-control" id="telefone_cliente" name="telefone_cliente" value="" required>
-          </div>
+    <div class="botoesleft">
+      <a href="minhaconta.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
+      <a href="index.html"><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
+    </div>
+  </div>
+  <div>
+    <h3 class="text-center mt-4">Incluir Nota</h3>
+    <h5>Dados do Cliente</h5>
+    <form class="needs-validation" novalidate action="#" id="formularioIncluir">
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+          <label for="nome_cliente">Nome do Cliente</label>
+          <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" value="" required>
         </div>
-      </form>
+        <div class="col-md-4">
+          <label for="cpf_cliente">CPF</label>
+          <input type="text" class="form-control" id="cpf_cliente" name="cpf_cliente" value="" required>
+        </div>
+        <div class="col-md-4">
+          <label for="telefone_cliente">Telefone</label>
+          <input type="text" class="form-control" id="telefone_cliente" name="telefone_cliente" value="" required>
+        </div>
+      </div>
       <h5>Produtos</h5>
       <form class="needs-validation" novalidate action="#">
         <div class="form-row mb-4 botaolado">
@@ -44,51 +47,56 @@
             <label for="codigoproduto">Código do Produto</label>
             <input type="number" class="form-control" id="codigoproduto" name="codigoproduto" value="" required>
           </div>
-          <div class="col-md-0 mt-4 botao_botaolado">
-            <button class="btn btn-primary" type="button" onclick="procurarproduto()">Procurar e Incluir</button>
-          </div>
-        </div>
       </form>
-      <table class="table light-dark" id="incluirprodutos">
-        <thead class="thead-dark">
-          <tr>
-            <th>Nome do Produto</th>
-            <th>Código</th>
-            <th>Preço</th>
-            <th>NCM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          </tr>
-        </tbody>
-      </table>
-      <div class="form-row mt-5">
-        <div class="col-md-3">
-          <label for="icms">ICMS</label>
-          <input type="number" class="form-control" id="icms" name="icms" value="" readonly>
-        </div>
-        <div class="col-md-3">
-          <label for="ipi">IPI</label>
-          <input type="number" class="form-control" id="ipi" name="ipi" value="" readonly>
-        </div>
-        <div class="col-md-3">
-          <label for="piscofins">Pis e Cofins</label>
-          <input type="number" class="form-control" id="piscofins" name="piscofins" value="" readonly>
-        </div>
-        <div class="col-md-3">
-          <label for="total_nota">Total da Nota</label>
-          <input type="number" class="form-control" id="total_nota" name="total_nota" value="" readonly>
-        </div>
+      <div class="col-md-0 mt-4 botao_botaolado">
+        <button class="btn btn-primary" type="button" onclick="procurarproduto()">Procurar e Incluir</button>
       </div>
-      <div class="form-row">
-        <div class="col-md-12 mt-3">
-          <button class="btn btn-primary mt-2 mb-4" type="button" onclick="salvarnota()">Salvar Nota</button>
-        </div>
-      </div>
+  </div>
+  </form>
+  <table class="table light-dark" id="incluirprodutos">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome do Produto</th>
+        <th>Código</th>
+        <th>Preço</th>
+        <th>NCM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-row mt-5">
+    <div class="col-md-3">
+      <label for="icms">ICMS</label>
+      <input type="number" class="form-control" id="icms" name="icms" value="" readonly>
     </div>
-    <script src="js/produtos.js"></script>
-    <script src="js/notas.js"></script>
-    <script src="main.js"></script> 
-  </body>
+    <div class="col-md-3">
+      <label for="ipi">IPI</label>
+      <input type="number" class="form-control" id="ipi" name="ipi" value="" readonly>
+    </div>
+    <div class="col-md-3">
+      <label for="piscofins">Pis e Cofins</label>
+      <input type="number" class="form-control" id="piscofins" name="piscofins" value="" readonly>
+    </div>
+    <div class="col-md-3">
+      <label for="total_nota">Total da Nota</label>
+      <input type="number" class="form-control" id="total_nota" name="total_nota" value="" readonly>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-12 mt-3">
+      <button class="btn btn-primary mt-2 mb-4" type="button" onclick="salvarnota()">Salvar Nota</button>
+    </div>
+  </div>
+  </div>
+  <script src="js/jquery/jquery.js"></script>
+  <script src="js/jquery/jquery.validate.js"></script>
+  <script src="js/jquery/jquery.mask.js"></script>
+  <script src="js/produtos.js"></script>
+  <script src="js/notas.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>

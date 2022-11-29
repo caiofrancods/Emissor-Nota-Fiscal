@@ -1,45 +1,80 @@
-///////// Cadastro ////////
-
 function cadastro() {
-  var user = JSON.parse(localStorage.getItem('user'));
-  var posicao = user.length;
+  if($("#formularioCadastro").valid()) {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var posicao = user.length;
 
-  var campo_nomefantasia = document.getElementById("nomefantasia");
-  var campo_cnpj = document.getElementById("cnpj");
-  var campo_email_contato = document.getElementById("emailcontato");
-  var campo_senha_cadastro = document.getElementById("senhacadastro");
-  var email = campo_email_contato.value;
-  var cnpj = campo_cnpj.value;
-  var controle = 0;
-  for (var i = 0; i < posicao; i++) {
-    if ((email == user[i].email) || (cnpj == user[i].cnpj)) {
-      controle = 1;
+    var campo_nomefantasia = document.getElementById("nomefantasia");
+    var campo_cnpj = document.getElementById("cnpj");
+    var campo_email_contato = document.getElementById("emailcontato");
+    var campo_senha_cadastro = document.getElementById("senhacadastro");
+    var email = campo_email_contato.value;
+    var cnpj = campo_cnpj.value;
+    var controle = 0;
+    for (var i = 0; i < posicao; i++) {
+      if ((email == user[i].email) || (cnpj == user[i].cnpj)) {
+        controle = 1;
+      }
+    }
+    if (controle == 0) {
+      var usuario = new Object();
+      usuario.nome = campo_nomefantasia.value;
+      usuario.cnpj = Number(campo_cnpj.value);
+      usuario.email = campo_email_contato.value;
+      usuario.senha = campo_senha_cadastro.value;
+      usuario.regtrib = 0;
+      usuario.pos = posicao;
+
+      user[posicao] = usuario;
+
+      localStorage.setItem('user', JSON.stringify(user));
+
+      alert("Cadastro Realizado com Sucesso");
+      window.location.href = "index.html";
+      } else {
+      alert("Este email ou CNPJ já está cadastrado!")
+      campo_nomefantasia.value = "";
+      campo_cnpj.value = "";
+      campo_email_contato.value = "";
+      campo_senha_cadastro.value = "";
     }
   }
-  if (controle == 0) {
-    var usuario = new Object();
-    usuario.nome = campo_nomefantasia.value;
-    usuario.cnpj = Number(campo_cnpj.value);
-    usuario.email = campo_email_contato.value;
-    usuario.senha = campo_senha_cadastro.value;
-    usuario.regtrib = 0;
-    usuario.pos = posicao;
-
-    user[posicao] = usuario;
-
-    localStorage.setItem('user', JSON.stringify(user));
-
-    alert("Cadastro Realizado com Sucesso");
-    window.location.href = "index.html";
-  } else {
-    alert("Este email ou CNPJ já está cadastrado!")
-    campo_nomefantasia.value = "";
-    campo_cnpj.value = "";
-    campo_email_contato.value = "";
-    campo_senha_cadastro.value = "";
-  }
 }
+$(document).ready(function() {
+  $('#cnpj').mask('00.000.000/0000-00');
+});
 
+$("#formularioCadastro").validate(
+	{
+		rules:{
+			nomefantasia:{
+				required:true
+			},
+			cnpj:{
+				required:true	
+			},
+      emailcontato:{
+        required:true
+      },
+      senhacadastro:{
+        required:true
+      }
+		}, 
+		messages:{
+			nomefantasia:{
+				required:"Campo obrigatório"
+			},
+			cnpj:{
+				required:"Campo obrigatório"
+			},
+      emailcontato:{
+        required:"Campo obrigatório"
+      },
+      senhacadastro:{
+        required:"Campo obrigatório"
+      }
+		}
+	}
+);
 ///////// Login ////////
 
 function login() {
