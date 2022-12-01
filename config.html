@@ -21,7 +21,7 @@
       </div>
       <div class="botoesleft">
         <a href="minhaconta.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
-        <a href="index.html"><button class="btn btn-danger btn-sm mx-1 my-1" type="submit">Sair</button></a>
+        <button class="btn btn-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button>
       </div>
     </div>
     <div id="corpo">
@@ -42,7 +42,7 @@
             </select>
           </div>
         </div>
-        <a href="javascript: abrirpopup()">Sobe as Regras de Tributação</a><br />
+        <a href="javascript: abrirpopup()">Sobre as Regras de Tributação</a><br />
         <div id="popup" class="popup">
           <h6 class="text-center sublinhar">Regimes Tributários</h6><br>
           <p>Simples Nacional</p>
@@ -65,11 +65,11 @@
               <label for="codigo">Código</label>
               <input type="number" class="form-control" id="codigo" name="codigo" value="" required />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-3">
               <label for="preco">Preço</label>
               <input type="number" class="form-control" id="preco" name="preco" value="" required />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-3">
               <label for="ncm">NCM</label>
               <select class="custom-select" id="ncm" name="ncm">
                 <option selected value="">Selecione o NCM</option>

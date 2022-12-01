@@ -5,7 +5,7 @@ function mostrarrelatorios(){
   var notasaux = [];
   var k = 0;
   for (var i = 0; i < tam; i++){
-    if (notas[i].pos == userlogado.pos){
+    if (notas[i].pos == userlogado.pos && notas[i].situacao == "Enviada"){
       notasaux[k] = notas[i];
       k = k+1;
     }
@@ -61,6 +61,7 @@ function mostrarrelatorios(){
   campo_menorcompra.value = menor.toFixed(2);
 
   // Cliente que comprou mais vezes
+  /*
   var campo_nome = document.getElementById("nome_cliente")
   var campo_vendas = document.getElementById("vendas");  
   var clientes_nome = [];
@@ -69,14 +70,12 @@ function mostrarrelatorios(){
   var controle = 0;
   for (var i = 0; i < posicao; i++){
     for (var j = 0; j < i; j++){
-      if (notasaux[i].nomecliente == clientes_nome[j]){
-        clientes_vendas[j] = clientes_vendas[j]+1;
-        controle = 1;
-      }      
+       if(clientes_nome[i] == notas[j].nomecliente){
+         controle = 1
+       }
     }
     if (controle == 0){
       clientes_nome[i] = notasaux[i].nomecliente;
-      clientes_vendas[i] = 1
     }
     controle = 0;
   }
@@ -85,7 +84,6 @@ function mostrarrelatorios(){
   for (var j = 0; j < posicao; j++){
     for (var i = 0; i < j; i++){
       if (clientes_vendas[i]<clientes_vendas[i+1]){
-        
         aux_vendas = clientes_vendas[i];
         clientes_vendas[i] = clientes_vendas[i+1];
         clientes_vendas[i+1] = aux_vendas;
@@ -98,5 +96,6 @@ function mostrarrelatorios(){
   }
   campo_nome.value = clientes_nome[posicao];
   campo_vendas.value = clientes_vendas[posicao];
+  */
 }
 

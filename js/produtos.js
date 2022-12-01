@@ -42,10 +42,12 @@ $("#formularioProduto").validate(
         required: true
       },
       codigo: {
-        required: true
+        required: true,
+        min: 1
       },
       preco: {
-        required: true
+        required: true,
+        min: 0
       }
     },
     messages: {
@@ -53,10 +55,12 @@ $("#formularioProduto").validate(
         required: "Campo obrigatório"
       },
       codigo: {
-        required: "Campo obrigatório"
+        required: "Campo obrigatório",
+        min: "O código deve ser um número positivo"
       },
       preco: {
-        required: "Campo obrigatório"
+        required: "Campo obrigatório",
+        min: "O preço deve ser maior que 0"
       }
     }
   }

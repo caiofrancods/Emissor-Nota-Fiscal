@@ -26,6 +26,9 @@ function procurarproduto() {
     } else {
       calc_impostos(controle)
       imprimiritem(produtos[controle]);
+      var controle_incluir = JSON.parse(localStorage.getItem('controle_incluir'));
+      controle_incluir = 1;
+      localStorage.setItem('controle_incluir', JSON.stringify(controle_incluir));
 
     }
   }
@@ -43,15 +46,15 @@ function calc_impostos(control) {
   var imposto_antes = Number(campo_icms.value);
   var valor_imposto = imposto_antes + (valor_produto * userlogado.regtrib);
 
-  campo_icms.value = valor_imposto;
-  campo_ipi.value = valor_imposto;
-  campo_piscofins.value = valor_imposto;
+  campo_icms.value = valor_imposto.toFixed(2);
+  campo_ipi.value = valor_imposto.toFixed(2);
+  campo_piscofins.value = valor_imposto.toFixed(2);
 
   var imposto_agora = imposto_antes + (valor_imposto - imposto_antes)
 
   var total_parcial_nota = Number(campo_totalnota.value);
   var total_parcial = total_parcial_nota + valor_produto + (imposto_agora * 3);
-  campo_totalnota.value = total_parcial;
+  campo_totalnota.value = total_parcial.toFixed(2);
   campo_codigo_produto.value = "";
 }
 
@@ -71,31 +74,39 @@ function imprimiritem(produto) {
   celula4_incluir.innerText = produto.ncm;
 }
 function salvarnota() {
-  var notas = JSON.parse(localStorage.getItem('notas'));
-  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
-  var posicao = notas.length;
-  var campo_nomecliente = document.getElementById("nome_cliente");
-  var campo_totalnota = document.getElementById("total_nota");
-  var notasaux = [];
-  var k = 0;
-  for (var i = 0; i<posicao; i++){
-    if (notas[i].pos == userlogado.pos){
-      notasaux[k] = notas[i]
-      k = k+1
+  if ($("#formularioIncluir").valid()) {
+    var controle_incluir = JSON.parse(localStorage.getItem('controle_incluir'));
+    if(controle_incluir == 0){
+      alert("É necessário incluir um produto para salvar a nota");
+    }else{
+      var notas = JSON.parse(localStorage.getItem('notas'));
+      var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+      var posicao = notas.length;
+      var campo_nomecliente = document.getElementById("nome_cliente");
+      var campo_totalnota = document.getElementById("total_nota");
+      var notasaux = [];
+      var k = 0;
+      for (var i = 0; i<posicao; i++){
+        if (notas[i].pos == userlogado.pos){
+          notasaux[k] = notas[i]
+          k = k+1
+        }
+      }
+      var tam = notasaux.length;
+      var nf = new Object();
+      nf.nomecliente = campo_nomecliente.value;
+      nf.numnota = tam+1;
+      nf.valortotal = campo_totalnota.value;
+      nf.situacao = "Pendente";
+      nf.pos = userlogado.pos;
+      notas[posicao] = nf;
+      controle_incluir = 0;
+      localStorage.setItem('controle_incluir', JSON.stringify(controle_incluir));
+      localStorage.setItem('notas', JSON.stringify(notas));
+      alert("Nota cadastrada com sucesso");
+      window.location.href = "principal.html";
     }
   }
-  var tam = notasaux.length;
-  var nf = new Object();
-  nf.nomecliente = campo_nomecliente.value;
-  nf.numnota = tam+1;
-  nf.valortotal = campo_totalnota.value;
-  nf.situacao = "Pendente";
-  nf.pos = userlogado.pos;
-  notas[posicao] = nf;
-
-  localStorage.setItem('notas', JSON.stringify(notas));
-  alert("Nota cadastrada com sucesso");
-  window.location.href = "principal.html";
 }
 
 $('#formularioIncluir').validate(
@@ -105,13 +116,15 @@ $('#formularioIncluir').validate(
         required: true
       },
       cpf_cliente: {
-        required: true
+        required: true,
+        minlength: 14
       },
       telefone_cliente: {
-        required: true
+        required: true,
+        minlength: 15
       },
       codigoproduto: {
-        required: true
+        required: false
       }
     },
     messages: {
@@ -119,13 +132,12 @@ $('#formularioIncluir').validate(
         required: "Campo obrigatório",
       },
       cpf_cliente: {
-        required: "Campo obrigatório"
+        required: "Campo obrigatório",
+        minlength: "Insira um CPF válido"
       },
       telefone_cliente: {
-        required: "Campo obrigatório"
-      },
-      codigoproduto: {
-        required: "Campo obrigatório"
+        required: "Campo obrigatório",
+        minlength: "Insira um telefone válido"
       }
     }
   }

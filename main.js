@@ -32,4 +32,8 @@ function iniciar() {
     var produtos = [];
     localStorage.setItem('produtos', JSON.stringify(produtos));
   }
+  if (!localStorage.controle_incluir) {
+    var controle_incluir = 0;
+    localStorage.setItem('controle_incluir', JSON.stringify(controle_incluir));
+  }
 }
