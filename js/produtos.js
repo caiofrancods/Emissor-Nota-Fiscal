@@ -13,28 +13,53 @@ function cadastrarproduto() {
       var campo_nomeproduto = document.getElementById("nomeproduto");
       var campo_codigo = document.getElementById("codigo");
       var campo_preco = document.getElementById("preco");
-      
-     
-      var produto = new Object();
-      produto.nome_produto = campo_nomeproduto.value;
-      produto.codigo = Number(campo_codigo.value);
-      produto.preco = Number(campo_preco.value);
-      produto.ncm = campo_ncm.value;
-      produto.pos = userlogado.pos;
+      var aux = 0;
+      for (var i = 0; i < posicao; i ++){
+        if (campo_nomeproduto.value == produtos[i].nome_produto || campo_codigo.value == produtos[i].codigo){
+          if (campo_nomeproduto.value == produtos[i].nome_produto){
+            aux = 1
+          }else{
+            if (campo_codigo.value == produtos[i].codigo){
+              aux = 2
+            }
+          }
+        }
+      }
+      if (aux == 1){
+        alert("Nome do produto já existente");
+        window.location.href = "config.html";
+      }    
+      if (aux == 2){
+        alert("Código do produto já foi cadastrado anteriormente");
+        window.location.href = "config.html";
+      }
   
-      produtos[posicao] = produto;
-  
-      localStorage.setItem('produtos', JSON.stringify(produtos));
-  
-      alert("Cadastro Realizado com Sucesso");
-      window.location.href = "config.html";
+      if (aux != 1 && aux != 2){
+        var produto = new Object();
+        produto.nome_produto = campo_nomeproduto.value;
+        produto.codigo = Number(campo_codigo.value);
+        produto.preco = Number(campo_preco.value);
+        produto.ncm = campo_ncm.value;
+        produto.pos = userlogado.pos;
+    
+        produtos[posicao] = produto;
+    
+        localStorage.setItem('produtos', JSON.stringify(produtos));
+    
+        alert("Cadastro Realizado com Sucesso");
+        window.location.href = "config.html";
+        campo_nomeproduto.value = "";
+        campo_codigo.value = "";
+        campo_preco.value = "";
+        campo_ncm.value = "";
+      }
     }
-    campo_nomeproduto.value = "";
-    campo_codigo.value = "";
-    campo_preco.value = "";
-    campo_ncm.value = "";
-  }
+  }  
 }
+$(document).ready(function() {
+  $('#preco').mask("#.##0,00", {reverse: true});
+});
+
 $("#formularioProduto").validate(
   {
     rules: {
@@ -46,8 +71,7 @@ $("#formularioProduto").validate(
         min: 1
       },
       preco: {
-        required: true,
-        min: 0
+        required: true
       }
     },
     messages: {
@@ -60,7 +84,6 @@ $("#formularioProduto").validate(
       },
       preco: {
         required: "Campo obrigatório",
-        min: "O preço deve ser maior que 0"
       }
     }
   }
@@ -72,7 +95,16 @@ function mostrarprodutos() {
   var produtos = JSON.parse(localStorage.getItem('produtos'));
   var userlogado = JSON.parse(localStorage.getItem('userlogado'));
   var tamanho = produtos.length;
-
+  for (var j = 0; j < tamanho-1; j++){
+    for (var i = 0; i < tamanho-1; i ++){
+      var aux = [1];
+      if (produtos[i].nome_produto < produtos[i+1].nome_produto){
+        aux[0] = produtos[i];
+        produtos[i] = produtos[i+1];
+        produtos[i+1] = aux[0];
+      }
+    }
+  }
   for (var i = 0; i < tamanho; i++) {
     if (produtos[i].pos == userlogado.pos) {
       imprimirprodutos(produtos[i]);

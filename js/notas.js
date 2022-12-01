@@ -83,7 +83,8 @@ function salvarnota() {
       var userlogado = JSON.parse(localStorage.getItem('userlogado'));
       var posicao = notas.length;
       var campo_nomecliente = document.getElementById("nome_cliente");
-      var campo_totalnota = document.getElementById("total_nota");
+      var campo_totalnota = document.getElementById("total_nota"); 
+      
       var notasaux = [];
       var k = 0;
       for (var i = 0; i<posicao; i++){
