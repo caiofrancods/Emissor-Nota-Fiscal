@@ -11,11 +11,13 @@ function mostrarrelatorios(){
     }
   }
   var posicao = notasaux.length
-
+  
   // Quantidade de Vendas
   var campo_quant_vendas = document.getElementById("quant_vendas");
   campo_quant_vendas.value = posicao;
-
+  if(posicao == 0){
+    alert("Não há notas registradas");
+  }
   // Valor Total das Vendas
   var campo_totalvendido = document.getElementById("total_vendido");  
   var soma_vendas = 0;
