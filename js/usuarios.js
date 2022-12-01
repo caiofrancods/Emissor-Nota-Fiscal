@@ -50,10 +50,12 @@ $("#formularioCadastro").validate(
 				required:true
 			},
 			cnpj:{
-				required:true	
+				required:true,
+        minlength: 18
 			},
       emailcontato:{
-        required:true
+        required:true,
+        email: true
       },
       senhacadastro:{
         required:true,
@@ -65,10 +67,12 @@ $("#formularioCadastro").validate(
 				required:"Campo obrigatório"
 			},
 			cnpj:{
-				required:"Campo obrigatório"
+				required:"Campo obrigatório",
+        minlength: "Insira um CNPJ válido"
 			},
       emailcontato:{
-        required:"Campo obrigatório"
+        required:"Campo obrigatório",
+        email: "Insira um e-mail válido"
       },
       senhacadastro:{
         required:"Campo obrigatório",
@@ -111,7 +115,8 @@ $("#formularioLogin").validate(
 	{
 		rules:{
 			email:{
-				required:true
+				required:true,
+        email: true
 			},
 			senha:{
 				required:true	
@@ -119,7 +124,8 @@ $("#formularioLogin").validate(
 		}, 
 		messages:{
 			email:{
-				required:"Campo obrigatório"
+				required:"Campo obrigatório",
+        email: "Insira um e-mail válido"
 			},
 			senha:{
 				required:"Campo obrigatório"
@@ -193,7 +199,8 @@ $("#formularioAlterar").validate(
         minlength: 8
 			},
       email_contato_alterar:{
-        required:true
+        required:true,
+        email: true
       }
 		}, 
 		messages:{
@@ -205,7 +212,8 @@ $("#formularioAlterar").validate(
         minlength: "Mínimo de 8 caracteres"
 			},
       email_contato_alterar:{
-        required:"Campo obrigatório"
+        required:"Campo obrigatório",
+        email: "Insira um e-mail válido"
       }
 		}
 	}
