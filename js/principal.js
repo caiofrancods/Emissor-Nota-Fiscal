@@ -28,9 +28,12 @@ function filtrar_notas() {
       }
     }
   }
+  debugger
   if (filtro == "tudo") {
-    for (var i = 0; i < posicao; i++) {
-      imprimirnota(notas[i]);
+    for (var i = 0; i < posicao; i++){
+      if (userlogado.pos == notas[i].pos) {
+        imprimirnota(notas[i]);
+      }
     }
   }
 }

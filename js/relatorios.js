@@ -59,43 +59,6 @@ function mostrarrelatorios(){
      }
   }
   campo_menorcompra.value = menor.toFixed(2);
-
-  // Cliente que comprou mais vezes
-  /*
-  var campo_nome = document.getElementById("nome_cliente")
-  var campo_vendas = document.getElementById("vendas");  
-  var clientes_nome = [];
-  var clientes_vendas = [];
-  
-  var controle = 0;
-  for (var i = 0; i < posicao; i++){
-    for (var j = 0; j < i; j++){
-       if(clientes_nome[i] == notas[j].nomecliente){
-         controle = 1
-       }
-    }
-    if (controle == 0){
-      clientes_nome[i] = notasaux[i].nomecliente;
-    }
-    controle = 0;
-  }
-  var aux_nome = "";
-  var aux_vendas = 0;
-  for (var j = 0; j < posicao; j++){
-    for (var i = 0; i < j; i++){
-      if (clientes_vendas[i]<clientes_vendas[i+1]){
-        aux_vendas = clientes_vendas[i];
-        clientes_vendas[i] = clientes_vendas[i+1];
-        clientes_vendas[i+1] = aux_vendas;
-
-        aux_nome = clientes_nome[i];
-        clientes_nome[i] = clientes_nome[i+1];
-        clientes_nome[i+1] = aux_nome;
-      }
-    }
-  }
-  campo_nome.value = clientes_nome[posicao];
-  campo_vendas.value = clientes_vendas[posicao];
-  */
 }
+
 

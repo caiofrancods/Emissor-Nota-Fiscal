@@ -141,10 +141,12 @@ function verdados() {
   var campo_nomefantasia_ver = document.getElementById("nomefantasia_ver");
   var campo_cnpj_ver = document.getElementById("cnpjver");
   var campo_email_contato_ver = document.getElementById("email_contato_ver");
+  var campo_senha_ver = document.getElementById("senhaver");
 
   campo_nomefantasia_ver.value = userlogado.nome;
   campo_cnpj_ver.value = userlogado.cnpj;
   campo_email_contato_ver.value = userlogado.email;
+  campo_senha_ver.value = userlogado.senha;
 }
 
 function mostrardados() {

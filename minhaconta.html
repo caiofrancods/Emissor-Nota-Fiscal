@@ -10,7 +10,7 @@
   <body onload="veriflog();verdados()">
     <div id="cimamenu">
       <div class="botoesright">
-        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Página Principal</button></a>
+        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit" >Página Principal</button></a>
         <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
         <a href="relatorios.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
       </div>
@@ -23,17 +23,21 @@
       <h3 class="text-center mt-4">Minha Conta</h3>
       <form>
         <div class="form-row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="nomefantasia_ver">Nome Fantasia</label>
             <input type="text" class="form-control" id="nomefantasia_ver" name="nomefantasia_ver" value="" readonly>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="cnpjver">CNPJ</label>
             <input type="text" class="form-control" id="cnpjver" name="cnpjver" value="" readonly>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="email_contato_ver">Email de Contato</label>
             <input type="email" class="form-control" id="email_contato_ver" name="email_contato_ver" value="" readonly>
+          </div>
+          <div class="col-md-3">
+            <label for="cnpjver">Senha</label>
+            <input type="password" class="form-control" id="senhaver" name="senhaver" value="" readonly>
           </div>
         </div>
       </form>
