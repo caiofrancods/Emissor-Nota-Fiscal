@@ -75,6 +75,7 @@ function imprimirnota(notas) {
 }
 
 function mudarsituacao() {
+  if($("#formularioMudar").valid()) {
   var notas = JSON.parse(localStorage.getItem("notas"));
   var userlogado = JSON.parse(localStorage.getItem("userlogado"));
   var campo_situacao = document.getElementById("situacao_mudar");
@@ -108,6 +109,10 @@ function mudarsituacao() {
           } else {
             alert("A nota já foi cancelada anteriormente");
           }
+        }else{
+          if(situacao_escolhida == ""){
+            alert("Nenhuma opção de alteração foi escolhida");
+          }
         }
       }
     }
@@ -118,3 +123,18 @@ function mudarsituacao() {
   campo_numero.value = "";
   localStorage.setItem('notas', JSON.stringify(notas));
 }
+}
+$("#formularioMudar").validate(
+	{
+		rules:{
+			numnota:{
+				required:true
+			},
+		}, 
+		messages:{
+			numnota:{
+				required:"Campo obrigatório"
+			}
+		}
+	}
+);

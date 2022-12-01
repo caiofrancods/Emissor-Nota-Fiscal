@@ -2,32 +2,37 @@
 
 function cadastrarproduto() {
   if ($("#formularioProduto").valid()) {
-    var produtos = JSON.parse(localStorage.getItem('produtos'));
-    var userlogado = JSON.parse(localStorage.getItem('userlogado'));
-    var posicao = produtos.length;
-
-    var campo_nomeproduto = document.getElementById("nomeproduto");
-    var campo_codigo = document.getElementById("codigo");
-    var campo_preco = document.getElementById("preco");
     var campo_ncm = document.getElementById("ncm");
-
-    var produto = new Object();
-    produto.nome_produto = campo_nomeproduto.value;
-    produto.codigo = Number(campo_codigo.value);
-    produto.preco = Number(campo_preco.value);
-    produto.ncm = campo_ncm.value;
-    produto.pos = userlogado.pos;
-
-    produtos[posicao] = produto;
-
-    localStorage.setItem('produtos', JSON.stringify(produtos));
-
-    alert("Cadastro Realizado com Sucesso");
+    if(campo_ncm.value == ""){
+      alert("Nenhum NCM foi selecionado");
+    }else{
+      var produtos = JSON.parse(localStorage.getItem('produtos'));
+      var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+      var posicao = produtos.length;
+  
+      var campo_nomeproduto = document.getElementById("nomeproduto");
+      var campo_codigo = document.getElementById("codigo");
+      var campo_preco = document.getElementById("preco");
+      
+     
+      var produto = new Object();
+      produto.nome_produto = campo_nomeproduto.value;
+      produto.codigo = Number(campo_codigo.value);
+      produto.preco = Number(campo_preco.value);
+      produto.ncm = campo_ncm.value;
+      produto.pos = userlogado.pos;
+  
+      produtos[posicao] = produto;
+  
+      localStorage.setItem('produtos', JSON.stringify(produtos));
+  
+      alert("Cadastro Realizado com Sucesso");
+      window.location.href = "config.html";
+    }
     campo_nomeproduto.value = "";
     campo_codigo.value = "";
     campo_preco.value = "";
     campo_ncm.value = "";
-    window.location.href = "config.html";
   }
 }
 $("#formularioProduto").validate(

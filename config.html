@@ -26,25 +26,23 @@
     </div>
     <div id="corpo">
       <div id="cimaconfig">
-        <h5 class="mt-4 text-center">Configurações Tributárias</h5>
-        <h5>Regime tributário</h5>
+        <h3 class="mt-4 text-center">Configurações Tributárias</h3>
+        <h5 class="text-center mt-4">Regime tributário</h5>
         <div class="form-row">
           <div class="col-md-3">
             <label for="regtrib">Regime Atual</label>
             <input type="text" class="form-control" id="regtrib" name="regtrib" value="" readonly />
           </div>
-        </div>
-        <div class="form-row">
-          <div>
+          <div class="ml-3">
             <label for="regime">Trocar regime</label>
             <select class="custom-select" id="regime" name="opc1">
-              <option selected>Selecione uma opção</option>
+              <option selected value="">Selecione uma opção</option>
               <option value="simplesnacional">Simples Nacional</option>
               <option value="lucropresumido">Lucro Presumido</option>
             </select>
           </div>
         </div>
-        <a href="javascript: abrirpopup()">Regras</a><br />
+        <a href="javascript: abrirpopup()">Sobe as Regras de Tributação</a><br />
         <div id="popup" class="popup">
           <h6 class="text-center sublinhar">Regimes Tributários</h6><br>
           <p>Simples Nacional</p>
@@ -56,7 +54,7 @@
         <button class="btn btn-primary mt-2 mb-4" type="button" onclick="trocartrib()">Trocar</button>
       </div>
       <div id="baixoconfig">
-        <h5 class="text-center">Cadastrar Produto</h5>
+        <h5 class="text-center mb-4">Cadastrar Produto</h5>
         <form class="needs-validation" novalidate action="#" id="formularioProduto">
           <div class="form-row">
             <div class="col-md-6">
@@ -74,7 +72,7 @@
             <div class="col-md-6">
               <label for="ncm">NCM</label>
               <select class="custom-select" id="ncm" name="ncm">
-                <option selected value="selecione">Selecione o NCM</option>
+                <option selected value="">Selecione o NCM</option>
                 <option value="3305.90.00">3305.90.00</option>
                 <option value="3004.50.90">3004.50.90</option>
                 <option value="3003.90.99">3003.90.99</option>
