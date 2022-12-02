@@ -28,8 +28,24 @@ function filtrar_notas() {
       }
     }
   }
-  debugger
   if (filtro == "tudo") {
+    for (var i = 0; i < posicao; i++){
+      if (userlogado.pos == notas[i].pos) {
+        imprimirnota(notas[i]);
+      }
+    }
+  }
+  if (filtro == "alpha") {
+    for (var j = 0; j < posicao-1; j++){
+      for (var i = 0; i < posicao-1; i ++){
+        var aux = [1];
+        if (notas[i].nomecliente < notas[i+1].nomecliente){
+          aux[0] = notas[i];
+          notas[i] = notas[i+1];
+          notas[i+1] = aux[0];
+        }
+      }
+    }
     for (var i = 0; i < posicao; i++){
       if (userlogado.pos == notas[i].pos) {
         imprimirnota(notas[i]);
@@ -101,7 +117,6 @@ function mudarsituacao() {
           } else {
             alert("A nota já foi enviada anteriormente");
           }
-
         }
       } else {
         if (situacao_escolhida == "cancelar") {

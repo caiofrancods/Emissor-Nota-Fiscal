@@ -16,7 +16,7 @@ function mostrarrelatorios(){
   var campo_quant_vendas = document.getElementById("quant_vendas");
   campo_quant_vendas.value = posicao;
   if(posicao == 0){
-    alert("Não há notas registradas");
+    alert("Não há notas enviadas registradas");
   }
   // Valor Total das Vendas
   var campo_totalvendido = document.getElementById("total_vendido");  
@@ -35,10 +35,6 @@ function mostrarrelatorios(){
     imposto_total = imposto_total + imposto; 
   } 
   campo_imposto.value = imposto_total.toFixed(2);
-
-  //Ticket Médio das Notas
-  var campo_ticket = document.getElementById("ticket_medio");
-  campo_ticket.value = (soma_vendas/posicao).toFixed(2);
 
   //Maior Compra da Loja
   var campo_maiorcompra = document.getElementById("maior_compra");
@@ -59,6 +55,10 @@ function mostrarrelatorios(){
      }
   }
   campo_menorcompra.value = menor.toFixed(2);
+
+  //Ticket Médio das Notas
+  var campo_ticket = document.getElementById("ticket_medio");
+  campo_ticket.value = (soma_vendas/posicao).toFixed(2);
 }
 
 

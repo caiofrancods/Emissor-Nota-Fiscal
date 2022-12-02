@@ -16,11 +16,13 @@ function cadastrarproduto() {
       var aux = 0;
       for (var i = 0; i < posicao; i ++){
         if (campo_nomeproduto.value == produtos[i].nome_produto || campo_codigo.value == produtos[i].codigo){
-          if (campo_nomeproduto.value == produtos[i].nome_produto){
-            aux = 1
-          }else{
-            if (campo_codigo.value == produtos[i].codigo){
-              aux = 2
+          if (produtos[i].pos == userlogado.pos){
+            if (campo_nomeproduto.value == produtos[i].nome_produto){
+              aux = 1
+            }else{
+              if (campo_codigo.value == produtos[i].codigo){
+                aux = 2
+              }
             }
           }
         }
@@ -56,9 +58,6 @@ function cadastrarproduto() {
     }
   }  
 }
-$(document).ready(function() {
-  $('#preco').mask("#.##0,00", {reverse: true});
-});
 
 $("#formularioProduto").validate(
   {
@@ -125,4 +124,62 @@ function imprimirprodutos(produto) {
   celula2_produtos.innerText = produto.codigo;
   celula3_produtos.innerText = produto.preco;
   celula4_produtos.innerText = produto.ncm;
+}
+function apagarLinhas() {
+  var tabelaAluno = document.getElementById("produtos");
+
+  var linhas = tabelaAluno.getElementsByTagName('tr');
+
+  var quantidade = linhas.length;
+  var contador = quantidade - 1;
+  while (contador >= 1) {
+    tabelaAluno.deleteRow(contador);
+    contador = contador - 1;
+  }
+}
+function ordenarpreco(){
+  var produtos = JSON.parse(localStorage.getItem('produtos'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+  var posicao = produtos.length;
+  
+  for (var j = 0; j < posicao-1; j++){
+    for (var i = 0; i < posicao-1; i ++){
+      var aux = [];
+      if (Number(produtos[i].preco) < Number(produtos[i+1].preco)){
+        aux[0] = produtos[i];
+        produtos[i] = produtos[i+1];
+        produtos[i+1] = aux[0];
+      }
+    }
+  }
+  apagarLinhas()
+  for (var i = 0; i < posicao; i++){
+    if (userlogado.pos == produtos[i].pos) {
+        imprimirprodutos(produtos[i]);
+      }
+  }
+}
+function ordenarcodigo(){
+  var produtos = JSON.parse(localStorage.getItem('produtos'));
+  var userlogado = JSON.parse(localStorage.getItem('userlogado'));
+  var posicao = produtos.length;
+  for (var j = 0; j < posicao-1; j++){
+    for (var i = 0; i < posicao-1; i ++){
+      var aux = [];
+      if (Number(produtos[i].codigo) < Number(produtos[i+1].codigo)){
+        aux[0] = produtos[i];
+        produtos[i] = produtos[i+1];
+        produtos[i+1] = aux[0];
+      }
+    }
+  }
+  apagarLinhas()
+  for (var i = 0; i < posicao; i++){
+    if (userlogado.pos == produtos[i].pos) {
+        imprimirprodutos(produtos[i]);
+      }
+  }
+}
+function ordenarnome(){
+  window.location.href = "config.html";
 }
