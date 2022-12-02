@@ -36,8 +36,4 @@ function iniciar() {
     var controle_incluir = 0;
     localStorage.setItem('controle_incluir', JSON.stringify(controle_incluir));
   }
-  if (!localStorage.frequente) {
-    var frequente = [];
-    localStorage.setItem('frequente', JSON.stringify(frequente));
-  }
 }

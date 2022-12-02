@@ -67,7 +67,7 @@
             </div>
             <div class="col-md-6 mt-3">
               <label for="preco">Preço</label>
-              <input type="text" class="form-control" id="preco" name="preco" value="" required />
+              <input type="number" class="form-control" id="preco" name="preco" value="" required />
             </div>
             <div class="col-md-6 mt-3">
               <label for="ncm">NCM</label>
@@ -85,6 +85,27 @@
             <div class="form-group">
               <button class="btn btn-primary mt-2 mb-4 float-right" type="button"
                 onclick="cadastrarproduto()">Cadastrar</button>
+            </div>
+          </div>
+        </div>
+        <h5 class="text-center mb-4">Lista de Produtos</h5>
+        <div class="form-row">
+          <div class="ml-2">
+            <div class="form-group">
+              <button class="btn btn-primary mt-2 mb-4 float-right" type="button"
+                onclick="ordenarpreco()">Ordenar por Preço</button>
+            </div>
+          </div>
+          <div class="ml-3">
+            <div class="form-group">
+              <button class="btn btn-primary mt-2 mb-4 float-right" type="button"
+                onclick="ordenarcodigo()">Ordenar por Código</button>
+            </div>
+          </div>
+          <div class="ml-3">
+            <div class="form-group">
+              <button class="btn btn-primary mt-2 mb-4 float-right" type="button"
+                onclick="ordenarnome()">Ordenar por Nome</button>
             </div>
           </div>
         </div>
