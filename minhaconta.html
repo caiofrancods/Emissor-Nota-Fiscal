@@ -8,18 +8,20 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body onload="veriflog();verdados()">
-    <div id="cimamenu">
+    <div class="cabecalho">
       <div class="botoesright">
-        <a href="principal.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit" >Página Principal</button></a>
-        <a href="config.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do Emissor</button></a>
-        <a href="relatorios.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
+        <a href="principal.html"><button class="btn btn-outline-info btn-sm mx-1 my-1" type="button">Página
+            Principal</button></a>
+        <a href="config.html"><button class="btn btn-outline-info btn-sm mx-1 my-1" type="submit">Configurações do
+            Emissor</button></a>
+        <a href="relatorios.html" ><button class="btn btn-outline-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
       </div>
       <div class="botoesleft">
-        <a href="minhaconta.html" ><button class="btn btn-info btn-sm mx-1 my-1" type="button" >Minha Conta</button></a>
-        <a href="index.html" ><button class="btn btn-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button></a>
+        <a href="minhaconta.html"><button class="btn btn-outline-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
+        <button class="btn btn-outline-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button>
       </div>
     </div>
-    <div>
+    <div id="corpo">
       <h3 class="text-center mt-4">Minha Conta</h3>
       <form>
         <div class="form-row">
@@ -44,7 +46,7 @@
       <div class="form-row">
           <div class="col-md-12">
             <div class="form-group">
-               <a href="alterarconta.html"><button class="btn btn-primary mt-2 mb-4" type="button">Alterar dados</button></a>
+               <a href="alterarconta.html"><button class="btn btn-primary mt-2 mb-4 float-right" type="button">Alterar dados</button></a>
             </div>
           </div>
         </div>

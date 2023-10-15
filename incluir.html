@@ -10,19 +10,20 @@
 </head>
 
 <body onload="veriflog()">
-  <div id="cimamenu">
+  <div class="cabecalho">
     <div class="botoesright">
-      <a href="principal.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Página Principal</button></a>
-      <a href="config.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Configurações do
+      <a href="principal.html"><button class="btn btn-outline-info btn-sm mx-1 my-1" type="button">Página
+          Principal</button></a>
+      <a href="config.html"><button class="btn btn-outline-info btn-sm mx-1 my-1" type="submit">Configurações do
           Emissor</button></a>
-      <a href="relatorios.html"><button class="btn btn-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
+      <a href="relatorios.html" ><button class="btn btn-outline-info btn-sm mx-1 my-1" type="submit">Relatórios</button></a>
     </div>
     <div class="botoesleft">
-      <a href="minhaconta.html"><button class="btn btn-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
-      <button class="btn btn-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button>
+      <a href="minhaconta.html"><button class="btn btn-outline-info btn-sm mx-1 my-1" type="button">Minha Conta</button></a>
+      <button class="btn btn-outline-danger btn-sm mx-1 my-1" type="button" onclick="sair()">Sair</button>
     </div>
   </div>
-  <div>
+  <div id="corpo">
     <h3 class="text-center mt-4">Incluir Nota</h3>
     <h5>Dados do Cliente</h5>
     <form class="needs-validation" novalidate action="#" id="formularioIncluir">
