@@ -1,6 +1,9 @@
- body{
-  margin: 1%;
+body{
   background-color: #f5f5f5;
+}
+html {
+  height: 100%;
+  width: 100%;
 }
 
 #container{
@@ -10,37 +13,65 @@
                        "esquerda centro direita";
   grid-gap: 20px;
 }
-#cima{
+
+/* #cima{
   grid-area: cima;
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
-  background-color:#433382;
+} */
+
+.cabecalho {
+  grid-area: cima;
+  padding: 15px;
+  background-color: #051d40;
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.cabecalhoCadastro {
+  grid-area: cima;
+  padding: 15px;
+  background-color: #051d40;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color:white;
 }
 .botoes{
   display: flex;
   justify-content: flex-end;
 }
-#esquerda{
-  grid-area: esquerda;
+
+.corpo{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.laterais{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
+  color: white;
+  padding: 15px;
+  background-color: #051d40;
+}
+
+#esquerda{
+  grid-area: esquerda;
 }
 #centro{
   grid-area: centro;
 }
 #direita{
   grid-area: direita;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  border: 1px solid black;
-  border-radius: 10px;
 }
 .mudarnota{
   display: grid;
@@ -53,11 +84,12 @@
   margin-left: 35%;
   margin-top: 15%;
   width: 500px;
-  height: 300px;
+  height: 400px;
 	padding: 15px;
 	border: solid 1px #4c4d4f;
 	background: #263238;
 	display: none;
+  font-size: 16px;
   color: white;
 }
 .popup a{
@@ -75,17 +107,10 @@
                        "corpo";
   grid-gap: 20px;
 }
-#cimamenu{
-  grid-area: cimamenu;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 5px;
-  background-color:#433382;
-}
 #corpo{
   grid-area: corpo;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 .verm{
   background-color: #99373c;
